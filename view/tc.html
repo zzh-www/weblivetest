@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <title>个人中心</title>
-    <link rel="stylesheet" href="https://cdn.bootcdn.net/ajax/libs/normalize/0/normalize.min.css">
+    <link rel="stylesheet" href="../css/normalize.min.css">
     <link rel="stylesheet" href="../css/main.css">
     <link href="../css/StudentStyle.css" rel="stylesheet" type="text/css" />
     <link href="../Script/jBox/Skins/Blue/jbox.css" rel="stylesheet" type="text/css" />
@@ -167,7 +167,7 @@
                             <div class="item">
                                 <a style="color: #aed581;" href="tc.html">我的信息</a></div>
                              <div class="item">
-                                <a style="color: #aed581;" href="../teacherroom.html?roomname=r22">直播信息</a>
+                                <a class="item":href="manageurl" style="color: #aed581;" >直播信息</a>
                             </div> 
                         </div>
                     </div>
@@ -301,7 +301,9 @@
                 personnalurl: "",
                 isClick: false,
                 key: '',
-                index: 0
+                index: 0,
+                roomname: "",
+                manageurl: "../teacherroom.html?roomname=",
 
             },
             methods: {
@@ -327,6 +329,8 @@
                     _this.email = obj2.email;
                     _this.teachers = obj2.teachers;
                     _this.hometown = obj2.hometown;
+                    _this.roomname = obj2.roomname;
+                    _this.manageurl = _this.manageurl+obj2.roomname;
                     // console.log(_this.teachers)
                 })
             },

@@ -67,6 +67,28 @@
       margin: 20px 0;
       border: 1px solid #bbb;
       overflow: scroll;
+      color: black;
+      background: #fff;
+    }
+
+    div#attendent {
+      width: 150px;
+      height: 150px;
+      padding: 5px;
+      margin: 20px 0;
+      border: 1px solid #bbb;
+      overflow: scroll;
+      color: rgb(102, 214, 102);
+      background: #fff;
+    }
+
+    div#unattendent {
+      width: 150px;
+      height: 150px;
+      padding: 5px;
+      margin: 20px 0;
+      border: 1px solid #bbb;
+      overflow: scroll;
       color: red;
       background: #fff;
     }
@@ -175,16 +197,17 @@
       <div class="sign">
         <table cellspacing="30">
           <tr>
-            <td style="font-size: 20px;">房间名：</td>
-            <td><input class="roominf" v-model="roomname" type="text" disabled /></td>
+            <td style="font-size: 10px;">房间名：
+              <input class="roominf" v-model="roomname" type="text" disabled /></td>
+            <td style="font-size: 10px;">类别：<input class="classtype" v-model="classname" type="text" disabled /></td>
           </tr>
           <tr>
-            <td style="font-size: 20px;">课程类别：</td>
-            <td><input class="classtype" v-model="classname" type="text" disabled /></td>
+            <td style="font-size: 10px;">课程标题：<input class="classtype" v-model="roomtitle" type="text" disabled /></td>
+            <td style="font-size: 10px;">邀请码：<input class="classtype" v-model="secrettext" type="text" disabled /></td>
           </tr>
           <tr>
             <td style="font-size: 20px;">观流地址：</td>
-            <td><input class="catchadress" v-model="playurl" type="text" disabled/></td>
+            <td><input class="catchadress" v-model="playurl" type="text" disabled /></td>
           </tr>
           <tr>
             <td style="font-size: 20px;">观看地址：</td>
@@ -198,61 +221,101 @@
           <table>
             <tr>
               <td>观众：</td>
-              <td><input class="audience" v-model="nowviewer" type="text" size="9" /></td>
+              <td></td>
+              <td></td>
               <td>学生：</td>
-              <td><input class="students" v-model="total_st" type="text" size="9" /></td>
+              <td></td>
+              <td></td>
+              <td></td>
               <td>会话：</td>
+
+            </tr>
+            <tr>
+              <td><input class="audience" v-model="nowviewer" type="text" size="9" /></td>
+              <td>&nbsp;</td>
+              <td>&nbsp;</td>
+
+              <td><input class="students" v-model="total_st" type="text" size="9" /></td>
+              <td>&nbsp;</td>
+              <td>&nbsp;</td>
+              <td>&nbsp;</td>
+
+
+
               <td><input class="converseation" type="text" size="9" /></td>
             </tr>
             <tr>
               <td>出席学生：</td>
-              <td><input class="attendent"  v-model="present" type="text" size="9" /></td>
+              <td>&nbsp;</td>
+              <td>&nbsp;</td>
+              <td>&nbsp;</td>
+              <td>&nbsp;</td>
+              <td>&nbsp;</td>
+              <td>&nbsp;</td>
               <td>未出席学生：</td>
-              <td><input class="unattendent" v-model="absent" type="text" size="9" /></td>
+            </tr>
+            <tr>
+              <td>
+                <div id="attendent"></div>
+                <!-- <input  class="attendent" type="text" name="msg" /> -->
+              </td>
+              <td>&nbsp;</td>
+              <td>&nbsp;</td>
+              <td>&nbsp;</td>
+              <td>&nbsp;</td>
+              <td>&nbsp;</td>
+              <td>&nbsp;</td>
+              <td>
+                <div id="unattendent"></div>
+                <!-- <input class="unattendent" type="text" name="msg" /> -->
+              </td>
             </tr>
           </table>
         </div>
       </div>
     </div>
     <form action="./php/edit_roomtitle.php" method="POST">
-    <div class="edit">
-      
-      <h1 style="color: #aed581;">编辑直播信息</h1>
-      <div>
-        <div class="edit-title">
-          <label for="">标题</label>
+      <div class="edit">
+
+        <h1 style="color: #aed581;">编辑直播信息</h1>
+        <div>
+          <div class="edit-title">
+            <label for="">标题</label>
+          </div>
+          <input id="roomtitle" class="titlemsg" type="text" name="titlemsg" cols="40" rows="5" placeholder="输入标题"
+            style="font-size: 20px;">
         </div>
-        <input name="title" class="" cols="40" rows="5" placeholder="输入标题" style="font-size: 20px;">
+        <div>
+          <div class="edit-title">
+            <label for="">开始直播通知</label>
+          </div>
+          <input name="info" class="" cols="40" rows="5" placeholder="xxx已上线" style="font-size: 20px;">
+        </div>
+        <div>
+          <div class="edit-title">
+            <label for="">类别</label>
+          </div>
+          <input id="roomclass" class="msg" type="text" name="msg" cols="30" rows="1" placeholder="搜索类别"
+            style="font-size: 20px;"></textarea>
+        </div>
+        <div>
+          <div class="edit-title">
+            <label for="">邀请码</label>
+          </div>
+          <input id="secrettext" class="msg" type="text" name="msg" cols="30" rows="1" placeholder="搜索标记"
+            style="font-size: 20px;"></textarea>
+        </div>
+        <div>
+          <div class="edit-title">
+            <label for="">直播语言</label>
+          </div>
+          <textarea class="" cols="30" rows="1" placeholder="English" style="font-size: 20px;"></textarea>
+        </div>
+
+        <input id="editbtn" class="editbtn" type="button" value="发送" @click="inputRoomMsg" />
+
       </div>
-      <div>
-        <div class="edit-title">
-          <label for="">开始直播通知</label>
-        </div>
-        <input name="info" class="" cols="40" rows="5" placeholder="xxx已上线" style="font-size: 20px;">
-      </div>
-      <!-- <div>
-        <div class="edit-title">
-          <label for="">类别</label>
-        </div>
-        <textarea class="" cols="30" rows="1" placeholder="搜索类别" style="font-size: 20px;"></textarea>
-      </div>
-      <div>
-        <div class="edit-title">
-          <label for="">标记</label>
-        </div>
-        <textarea class="" cols="30" rows="1" placeholder="搜索标记" style="font-size: 20px;"></textarea>
-      </div>
-      <div>
-        <div class="edit-title">
-          <label for="">直播语言</label>
-        </div>
-        <textarea class="" cols="30" rows="1" placeholder="English" style="font-size: 20px;"></textarea>
-      </div> -->
-    
-      <input id="editbtn" class="editbtn" type="submit" value="发送" @click="newtitle"/>
-      
-    </div>
-  </form>
+    </form>
 
 
     <div class="box">
@@ -286,16 +349,19 @@
           roomname: "",
           viewers: "",
           students: "",
-          total_st:"",
-          nowviewer:"",
-          present:"",
-          absent:"",
+          total_st: "",
+          nowviewer: "",
+          present: "",
+          absent: "",
+          roomtitle: "",
+          secrettext: "",
 
         }
       },
       methods: {
         getdata() {
           let _this = this
+
           $.get("./php/chat_recv.php", function (data) {
             $("#chat").html("");
             var obj = JSON.parse(data)
@@ -308,71 +374,136 @@
             }
           })
         },
-        newtitle(){
+        getstudent() {
+          let _this = this
+
+          $.get("./php/return_roomstudents.php", function (data) {
+            // console.log(data)
+            $("#attendent").html("");
+            $("#unattendent").html("");
+            var obj = JSON.parse(data)
+            var array = obj.result;
+            for (var i = 0; i < array.length; i++) {
+              var obj2 = eval('(' + array[i] + ')');
+              // console.log(typeof obj2.onplay)
+              // console.log(obj2.studentname)
+              if (obj2.onplay == "200") {
+                $("#attendent").append($("<p>" + " " + obj2.studentname + "</p>")); 
+              } else {
+                $("#unattendent").append($("<p>" + " " + obj2.studentname + "</p>"))
+              }
+            }
+          })
+        },
+
+
+
+        newtitle() {
           alert("已更新")
         },
+
+
 
         inputMsg() {
           let txtmsg = document.querySelector('#txtmsg')
           // let txtname = document.querySelector('#txtname')
           if ($("#txtmsg").val() == "") {
-            alert("发送内容不能为空" + $("#txtname").val() + $("#txtmsg").val());
+            alert("发送内容不能为空" + $("#txtmsg").val());
           } else {
             /*上传数据*/
             var url = "./php/chat_send.php";
             // document.getElementById("txtname").readOnly = true;
             strmsg = $("#txtmsg").val();
-            console.log(strmsg)
+            // console.log(strmsg)
             $.get(url, {
               "msg": strmsg
             }, function (msg) {
               $("#txtmsg").val("")
             });
           }
-
-
-
-
-
           txtmsg.value = ""
           // txtname.value= ""
         },
+
+        inputRoomMsg() {
+          let title = document.querySelector('#roomtitle')
+          /*上传数据*/
+          var url = "./php/roommessage_send.php";
+          // document.getElementById("txtname").readOnly = true;
+          strtitle = $("#roomtitle").val();
+          strclass = $("#roomclass").val();
+          strtext = $('#secrettext').val();
+          // console.log(strmsg)
+          $.get(url, {
+            "titlemsg": strtitle,
+            "classmsg": strclass,
+            "textmsg": strtext,
+          }, function (msg) {
+            $("#roomtitle").val("");
+            $("#roomclass").val("");
+            $('#secrettext').val("");
+          });
+
+
+
+
+        },
+
+
+
         getstnum() {
-          let _this=this
-          $.get("./php/number_ofviewer.php",function(data){
-            console.log(data)
-          var number=data.split('|')
-          _this.total_st=number[0]
-          _this.nowviewer=number[1]
-          _this.present=number[2]
-          _this.absent=number[3]
+          let _this = this
+          $.get("./php/number_ofviewer.php", function (data) {
+              // console.log("whoyouare")
+              // console.log(data, "wwww");
+              var number = data.split('|');
+              _this.total_st = number[0]
+              _this.nowviewer = number[1]
+              _this.present = number[2]
+              _this.absent = number[3]
             }
-          
+
           )
+        },
+
+        getroommessage() {
+          let _this = this
+          $.get("./php/roommessage.php", function (data) {
+              // console.log("whoyouare")
+              // console.log(data, "wwww");
+              var obj = JSON.parse(data);
+              var array = obj.result;
+              var obj2 = eval('(' + array[0] + ')');
+              _this.roomtitle = obj2.roomtitle;
+            }
+
+          )
+
+
+          $.get("./php/get_personal.php",
+            function (data) {
+              var obj = JSON.parse(data);
+              var array = obj.result;
+              var obj2 = eval('(' + array[0] + ')');
+              _this.viewurl = 'https://gwsjwm.top/weblivetest/liveroom.html' + '?roomname=' + obj2.roomname;
+              _this.playurl = _this.playurl + obj2.username + "&pwd=" + obj2.password;
+              _this.classname = obj2.class;
+              _this.roomname = obj2.roomname;
+              _this.secrettext = obj2.secrettext;
+
+            })
         },
 
       },
       mounted() {
         let _this = this
-        $.get("./php/get_personal.php",
-          function (data) {
-            var obj = JSON.parse(data);
-            var array = obj.result;
-            var obj2 = eval('(' + array[0] + ')');
-            _this.viewurl = 'https://gwsjwm.top/weblivetest/liveroom.html' + '?roomname=' + obj2.roomname;
-            _this.playurl = _this.playurl + obj2.username + "&pwd=" + obj2.password;
-            _this.classname = obj2.class;
-            _this.roomname = obj2.roomname;
-
-          })
         setInterval(() => {
-          this.getdata();
+          _this.getstudent();
+          _this.getdata();
+          _this.getstnum();
+          _this.getroommessage();
           // console.log("doit")
-        }, 100);
-        setInterval(() => {
-          this.getstnum();
-          // console.log("doit")
-        }, 100);
+        }, 1000);
 
 
       }
