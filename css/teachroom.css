@@ -1,0 +1,46 @@
+.el-button {
+    display: inline-block;
+    /* line-height: 1; */
+    white-space: nowrap;
+    cursor: pointer;
+    background: #FFF;
+    border: 1px solid #DCDFE6;
+    color: #606266;
+    -webkit-appearance: none;
+    text-align: center;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+    outline: 0;
+    margin: 7px;
+    -webkit-transition: .1s;
+    transition: .1s;
+    font-weight: 500;
+    padding: 12px 20px;
+    font-size: 14px;
+    border-radius: 4px;
+    inline-size: 150px;
+}
+.el-button--primary {
+    color: #FFF;
+    background-color: #aed581;
+    border-color: #aed581;
+    position: absolute; left: 900px; top: 110px;  
+}
+.el-button--primary:hover {
+    color: #FFF;
+    background-color: #33691e;
+    border-color: #33691e;
+}
+.el-button--primary:focus, .el-button--primary:hover {
+    background: #aed581;
+    border-color: #aed581;
+    color: #FFF;
+}
+.el-button:focus, .el-button:hover {
+    color: #fff;
+    border-color: #e7efdf;
+    background-color: #c5dfa7;
+}
+.col-5 {
+    right: 140px;
+}

@@ -1,0 +1,13 @@
+@charset "utf-8";
+*{margin:0;padding:0;word-break:break-all;word-wrap: break-word; font-family:"Microsoft Yahei", Verdana, Arial, Helvetica, sans-serif;}
+.rightbox{ margin-left:155px; min-height:500px; _height:500px;}
+.cztable{padding:15px 0;}
+.cztable table{border-bottom:#cfe1f9 solid 4px;border-right:#cfe1f9 solid 1px;}
+.cztable td, .cztable th{border-top:#cfe1f9 solid 1px; border-left:#cfe1f9 solid 1px; padding:6px 5px; }
+.cztable th{background:#eef7fc url(../Images/Student/bgtable.jpg) repeat-x; line-height:22px; color:#185697;}
+.cztable td a{color:#185697;}
+.cztable .xxleft{text-align:left;}
+div{
+	display: block;
+}
+body{font-size:12px; line-height:22px;color:#333;}

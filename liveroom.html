@@ -1,0 +1,399 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+    <title>flv.js demo</title>
+    <link rel="stylesheet" type="text/css" href="css/demo.css" />
+    <link rel="stylesheet" href="css/index.css">
+    <link rel="stylesheet" type="text/css" href="css/font.css">
+    <link rel="stylesheet" href="css/video.css">
+    <!-- <link rel="stylesheet" href="css/mains.css"> -->
+    <script src="js/recorder-core.js"></script>
+    <script src="js/mp3.js"></script>
+    <script src="js/mp3-engine.js"></script>
+    <script src="js/frequency.histogram.view.js"></script>
+    <script src="js/lib.fft.js"></script>
+    <style type="text/css">
+        body {
+            overflow: hidden;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            font-family: "xxzt";
+        }
+
+        .top-nav {
+            height: 100px;
+        }
+
+        .box {
+            /* margin: 20px auto; */
+            width: 100%;
+            height: 1000px;
+            padding: 20px;
+            box-sizing: border-box;
+            /* border: 1px solid #000; */
+            float: right;
+        }
+
+        h1 {
+            text-align: center;
+        }
+
+        div#chat {
+            width: 100%;
+            height: 50%;
+            padding: 5px;
+            margin: 20px 0;
+            border: 1px solid #bbb;
+            overflow: scroll;
+            color: red;
+        }
+
+        /*设置视频部分的宽度*/
+        .show {
+            width: 800px;
+        }
+
+        .centeredVideo {
+            z-index: 100;
+        }
+
+        .msg {
+            width: 200px;
+            height: 25px;
+        }
+
+        .btn,
+        .btn2 {
+            border: none;
+            width: 80px;
+            height: 30px;
+            border-radius: 3px;
+            cursor: pointer;
+            background: #4c8cf5;
+            color: #fff;
+        }
+
+        .btn2 {
+            float: right;
+            background: #de5145;
+        }
+
+        .btn2:hover {
+            background: #cd3225;
+        }
+
+        .btn:hover {
+            background: #8ab4f9;
+        }
+
+        .name {
+            background: #5cb85c;
+            color: #fff;
+            border-radius: 3px;
+            padding: 3px;
+            font-size: 15px;
+        }
+
+        .time {
+            background: #ccc;
+            border-radius: 3px;
+            font-size: 12px;
+            color: #fff;
+        }
+
+        /* input {
+            margin: 0 10px;
+            width: 50px;
+        } */
+
+        .urlInput {
+            display: block;
+            width: 100%;
+            margin-left: auto;
+            margin-right: auto;
+            margin-top: 8px;
+            margin-bottom: 8px;
+            float: right;
+        }
+
+        .centeredVideo {
+            display: block;
+            width: 100%;
+            height: 576px;
+            margin-left: auto;
+            margin-right: auto;
+            margin-bottom: auto;
+            float: right;
+        }
+
+        .controls {
+            display: block;
+            width: 100%;
+            text-align: left;
+            margin-left: auto;
+            margin-right: auto;
+            float: right;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="top-nav">
+        <div class="container clearf">
+            <img src="peper.PNG" width=250px height=80px style="position:absolute; left:100px; top:5px;">
+            <div class="fr">
+                <a class="item" href="regist\login.html">登录</a>
+                <a class="item" href="regist\registe.html">注册</a>
+                <a class="item" href="view\tc.html">个人中心</a>
+                <a class="item" href="homepage_2.html">首页</a>
+            </div>
+        </div>
+    </div>
+    <div class="header clearf">
+        <div class="container">
+            <div class="contain">
+                <div class="col-5 search-bar">
+                    <label>
+                        <input type="text">
+                    </label>
+
+                    <button>搜索</button>
+                </div>
+                <div class="col-3 cart">
+                    <a class="item" href="#">已购课程</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id="home">
+        <div id="preloader"></div>
+
+        <el-button class="cbtn" @click="changeDra();changePos()" @click="changePos" type="primary"
+            style="margin:50px 200px; position:absolute; left: 850px; bottom: 50px;">
+            聊天室
+        </el-button>
+
+        <!--右侧弹出的框-->
+        <el-drawer title="我是标题" :visible.sync="drawer" :with-header="false" :modal="false">
+            <!--聊天框-->
+            <div class="box">
+                <h1>chatroom</h1>
+                <p><span class="name">昵称:</span><input id="txtname" type="text" maxlength="15" />
+                    <input id="clear" class="btn2" type="button" value="清屏" /></p>
+                <div id="chat"></div>
+                <input id="txtmsg" class="msg" type="text" name="msg" />
+                <input id="btn" class="btn" type="button" value="发送" @click="inputMsg" />
+            </div>
+        </el-drawer>
+
+        <div class="mainContainer">
+            <div class="show">
+                <video id="videoElement" class="centeredVideo" controls autoplay width="1024" height="576">Your browser
+                    is
+                    too old which doesn't support HTML5 video.</video>
+            </div>
+        </div>
+    </div>
+
+    <script src="js/flv.js"></script>
+    <script src="js/flv.min.js"></script>
+    <script src="js/vue.js"></script>
+    <script src="js/index.js"></script>
+    <script src="js/jquery.min.js"></script>
+    <script src="js/loader.js"></script>
+    <script>
+    </script>
+    <script>
+        new Vue({
+            el: '#home',
+            data: function () {
+                return {
+                    drawer: false,
+                    id: 1,
+                    string: "",
+                    usernamestring: "",
+                    playurl: "http://gwsjwm.top:8080/live/",
+
+                }
+            },
+            methods: {
+                down() {},
+                changeDra() {
+                    this.drawer = true
+                },
+                getdata() {
+                    let _this = this
+                    $.get("./php/chat_recv.php", function (data) {
+                        // console.log("getgetegtegtegtegtegetegtegte")
+                        $("#chat").html("");
+                        var obj = JSON.parse(data)
+                        var array = obj.result;
+                        for (var i = 0; i < array.length; i++) {
+                            var obj2 = eval('(' + array[i] + ')');
+                            var time = "<span class = time>" + obj2.whentime + "</span>";
+                            $("#chat").append($("<p>" + time + " " + obj2.studentname + ":" + obj2
+                                .message + "</p>"))
+                        }
+                        // console.log(_this.id)
+                        var finalmsgobj = eval('(' + array[0] + ')')
+                        setTimeout(function () {
+                            if (finalmsgobj.id != _this.id) {
+                                var i = finalmsgobj.id - _this.id - 1;
+                                while (i >= 0) {
+                                    var msgobj = eval('(' + array[i] + ')');
+                                    _this.string = msgobj.message;
+                                    _this.insert();
+                                    i--;
+                                    _this.id++;
+                                }
+                            }
+                        }, 50)
+                    })
+                },
+
+                //输出弹幕
+                insert() {
+                    var danmu = document.querySelector('.show');
+                    //获取当前 div的高度（后面可能得修改）
+                    var winH = danmu.offsetHeight;
+
+                    //设置弹幕颜色
+                    var color = ["#00F5FF", "#7CFC00", "#FFFF00", "#F0FFF0"]
+                    var colorIndex = Math.floor(Math.random() * color.length);
+
+                    var newli = document.createElement('div');
+                    newli.innerHTML = this.string;
+                    newli.className = 'newli';
+                    newli.style.color = color[colorIndex];
+
+                    var t = winH - 300;
+                    var newliT = Math.floor(Math.random() * (t - 1));
+                    var newliL = danmu.offsetWidth;
+                    newli.style.left = `${newliL}px`;
+                    newli.style.top = `${newliT}px`;
+                    danmu.appendChild(newli);
+                    move(newli);
+
+                    function move(obj) {
+                        var timer1 = setInterval(function () {
+                            // var danmu=document.getElementById(´danmu´);
+                            var newliW = obj.offsetWidth;
+                            var run = obj.offsetLeft;
+                            run--;
+                            if (run <= -newliW) {
+                                danmu.removeChild(obj);
+                                clearInterval(timer1);
+                            }
+                            obj.style.left = `${run}px`;
+                        }, 5)
+                    }
+                },
+
+                inputMsg() {
+                    // console.log(this.id + "wwwwwwwwwwwww")
+                    let txtmsg = document.querySelector('#txtmsg')
+                    let btn1 = document.querySelector('#btn1')
+                    let txtname = document.querySelector('#txtname')
+                    if ($("#txtname").val() == "" || $("#txtmsg").val() == "") {
+                        alert("昵称及发送内容不能为空" + $("#txtname").val() + $("#txtmsg").val());
+                    }
+
+                    /*上传数据*/
+                    var url = "./php/chat_send.php";
+                    if ($("#txtname").val() != "") {
+                        strname = $("#txtname").val();
+                        document.getElementById("txtname").readOnly = true;
+                        strmsg = $("#txtmsg").val();
+                        $.get(url, {
+                            "name": strname,
+                            "msg": strmsg
+                        }, function (msg) {
+                            if ($.trim(msg) == "1") {
+                                $("#txtmsg").val("")
+                            };
+                        });
+                    }
+
+
+
+
+                    txtmsg.value = ""
+                    // txtname.value= ""
+                },
+                //点击改变中部视频的位置
+                changePos() {
+                    let videoElement = document.querySelector('#videoElement')
+                    videoElement.setAttribute('left', 10)
+                },
+            },
+            mounted() {
+                let _this = this
+                var url = document.location.toString();
+                var arrUrl = url.split("?");
+
+                var para = arrUrl[1].split("=")[1];
+                // console.log(para);
+                $.ajax({
+                    url: "./php/test_session.php",
+                    type: 'get',
+
+                }).then(function (data) {
+                    _this.usernamestring = data
+                    _this.playurl = _this.playurl + para + ".flv" + "?user=" + _this.usernamestring;
+                    var player = document.getElementById('videoElement');
+                    if (flvjs.isSupported()) {
+                        var flvPlayer = flvjs.createPlayer({
+                            type: 'flv',
+                            "isLive": true, //<====加个这个
+                            url: _this.playurl, //<==自行修改
+
+                        });
+                        flvPlayer.attachMediaElement(videoElement);
+                        flvPlayer.load(); //加载
+                        flv_start();
+                    }
+                })
+                $.get("./php/chat_recv.php",
+                    function (data) {
+                        var obj = JSON.parse(data)
+                        var array = obj.result;
+                        var obj2 = eval('(' + array[0] + ')');
+                        _this.id = obj2.id;
+                    })
+                setInterval(() => {
+                    this.getdata();
+                    // console.log("doit")
+                }, 1000);
+
+
+                function flv_start() {
+                    player.play();
+                }
+
+                function flv_pause() {
+                    player.pause();
+                }
+
+                function flv_destroy() {
+                    player.pause();
+                    player.unload();
+                    player.detachMediaElement();
+                    player.destroy();
+                    player = null;
+                }
+
+                function flv_seekto() {
+                    player.currentTime = parseFloat(document.getElementsByName('seekpoint')[0].value);
+                }
+            }
+
+        })
+    </script>
+</body>
+
+</html>

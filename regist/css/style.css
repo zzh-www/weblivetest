@@ -1,0 +1,35 @@
+@charset "utf-8";
+/* CSS Document */
+@font-face {
+	font-family:'xxzt'; 
+	src: url('./xxzt.ttf');
+}
+
+*{ margin:0; padding:0}
+ul, ol, li, dl, dt, dd {list-style:none;}
+a{text-decoration:none;outline:0px;}
+img{ border:0;max-width: 100%;}
+.ccsl{overflow: hidden;white-space: nowrap;text-overflow: ellipsis;display: block;}
+.clear {clear:both;}
+body{ width:100%;max-width:512px; margin:0 auto; background:#aed581; font-size:12px; line-height:24px; color:#33691e; font-family:"微软雅黑"}
+.mainWarp{width:100%;max-width:512px; margin:0 auto;background:url(../images/bg.png) no-repeat; background-size:100% 100%;position: relative;}
+
+
+.logoBox{ overflow:hidden; width:80%; background:rgba(255,255,255,0.2); margin:-30px auto; border-width:1px; border-style:solid; border-color:rgba(255,255,255,0.5); border-radius:15px;}
+.logoBox h2{ padding:90px 50px 30px; overflow:hidden; color:#33691e; font-weight:bolder; font-size:50px}
+
+.itemBox{ margin:10px 55px; border-bottom-width:1px; border-bottom-style:solid; border-bottom-color:rgba(255,255,255,1); height:40px; line-height:40px;}
+.itemBox img{ float:left; width:20px; margin:10px 10px 10px 0}
+.itemBox input{ width:70%; float:left;height:40px; line-height:40px;color:#33691e; border:0; outline:none; background:none; letter-spacing:1px; font-size:14px; font-weight: bolder}
+
+
+
+input::-webkit-input-placeholder{color:#33691e;}
+input::-moz-placeholder{   /* Mozilla Firefox 19+ */color:#33691e;}
+input:-moz-placeholder{    /* Mozilla Firefox 4 to 18 */color:#33691e;}
+input:-ms-input-placeholder{  /* Internet Explorer 10-11 */ color:#33691e; }
+
+.btnBox{ position: absolute; bottom:350px; left: 290px; overflow:hidden; color:#aed581;}
+.btnBox input{ width:100%; background:none;border-width:1px; border-style:solid;  border-radius:15px; height:50px; line-height:40px; color:#33691e; letter-spacing:1px; font-size:30px; font-weight: bolder; outline:none; cursor:pointer}
+
+

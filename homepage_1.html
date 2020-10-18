@@ -1,0 +1,993 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>直播</title>
+    <link rel="stylesheet" href="https://cdn.bootcdn.net/ajax/libs/normalize/0/normalize.min.css">
+    <link rel="stylesheet" href="css\mains.css">
+    <link rel="stylesheet" href="https://unpkg.com/element-ui/lib/theme-chalk/index.css">
+    <style type="text/css">
+        .top-nav {
+            height: 100px;
+        }
+
+        .el-carousel__item h3 {
+            color: #33691e;
+            font-size: 18px;
+            opacity: 0.75;
+            line-height: 300px;
+            margin: 0;
+        }
+
+        .el-carousel__item:nth-child(2n) {
+            background-color: #99a9bf;
+        }
+
+        .el-carousel__item:nth-child(2n+1) {
+            background-color: #d3dce6;
+        }
+    </style>
+</head>
+
+<body>
+    <!--贯穿群聊-->
+    <div id="home">
+        <div class="top-nav">
+            <div class="container clearf">
+                <img src="peper.PNG" width=250px height=80px style="position:absolute; left:100px; top:10px;">
+                <div class="fr">
+                    <a class="item" href="regist\login.html">登录</a>
+                    <a class="item" href="regist\registe.html">注册</a>
+                    <a class="item" :href="personnalurl">个人中心</a>
+                </div>
+            </div>
+        </div>
+        <div class="header clearf">
+            <div class="container">
+                <div class="contain">
+                    <div class="col-5 search-bar">
+                        <label>
+                            <input type="text">
+                        </label>
+
+                        <button>搜索</button>
+                    </div>
+                    <div class="col-3 cart">
+                        <a class="item" href="#">已购课程</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!--主促销区-->
+        <div class="main-promote clearf">
+            <div class="col-2 cat">
+                <a href="#Chinese">
+                    <div class="item">语文</div>
+                </a>
+                <a href="#math">
+                    <div class="item">数学</div>
+                </a>
+                <a href="#English">
+                    <div class="item">英语</div>
+                </a>
+                <a href="#politics">
+                    <div class="item">政治</div>
+                </a>
+                <a href="#history">
+                    <div class="item">历史</div>
+                </a>
+                <a href="#geography">
+                    <div class="item">地理</div>
+                </a>
+                <a href="#physics">
+                    <div class="item">物理</div>
+                </a>
+                <a href="#chemistry">
+                    <div class="item">化学</div>
+                </a>
+                <a href="#biology">
+                    <div class="item">生物</div>
+                </a>
+                <a href="#programme">
+                    <div class="item">编程</div>
+                </a>
+            </div>
+            <div class="container">
+            </div>
+            <div>
+                <el-carousel indicator-position="outside" height="608.67px">
+                    <el-carousel-item v-for="(item,index) in ImageItem" :key="index">
+                        <a href="class">
+                            <h3>
+                                <img :src="item.url" alt="" style="height: 100%">
+                            </h3>
+                        </a>
+                    </el-carousel-item>
+                </el-carousel>
+            </div>
+        </div>
+        <div class="container">
+            <div class="cat-promote clearf">
+                <a name="Chinese">
+                    <div class="title">语文</div>
+                </a>
+                <div class="content">
+                    <div class="col-2 item" v-for="(data,index) in classliveurl" :key="index">
+                        <div class="card">
+                            <div>
+                                <div class="cou-head">
+                                    <a class="item" :href="data.url">个人中心</a>
+
+                                    <div class="cou-head-img"><a class="item" :href="data.url"
+                                            target="_blank"><img src="images\t01.jpg" alt="" /></a></div>
+                                    <div class="cou-head-box">
+                                        <span class="span3">初一语文</span>
+                                        <span class="span2">自主课</span>
+                                        <p>{{ data.teachername }}</p>
+                                    </div>
+                                    <div class="clr"></div>
+                                </div>
+                                <div class="cou-tll"><a class="item" :href="data.url" target="_blank">{{ data.roomtitle }}</a></div>
+                                <div class="cou-price">￥3.00积分<span>原价 : 5.00积分</span></div>
+                                <div class="cou-timer">{{ data.roomhotdegree }}</div>
+                                <div class="cou_bo">直播时间：2020-10-17 20：00</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+            <div class="cat-promote clearf">
+                <a name="math">
+                    <div class="title">数学</div>
+                </a>
+                <div class="content">
+                    <div class="col-2 item">
+                        <div class="card">
+                            <div>
+                                <div class="cou-head">
+                                    <div class="cou-head-img"><a href="#" target="_blank"><img src="images\t01.jpg"
+                                                alt="" /></a></div>
+                                    <div class="cou-head-box">
+                                        <span class="span3">初三数学</span>
+                                        <span class="span2">自主课</span>
+                                        <p>主讲老师：chen tomas</p>
+                                    </div>
+                                    <div class="clr"></div>
+                                </div>
+                                <div class="cou-tll"><a href="#" target="_blank">【直播】勾股定理的应用</a></div>
+                                <div class="cou-price">￥3.00积分<span>原价 : 5.00积分</span></div>
+                                <div class="cou-timer">1课时&nbsp;&nbsp;0分钟&nbsp;&nbsp;2人学习</div>
+                                <div class="cou_bo">直播时间：2020-10-17 18：00</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-3 item">
+                        <div class="card">
+                            <div>
+                                <div class="cou-head">
+                                    <div class="cou-head-img"><a href="#" target="_blank"><img src="images\t01.jpg"
+                                                alt="" /></a></div>
+                                    <div class="cou-head-box">
+                                        <span class="span3">初三数学</span>
+                                        <span class="span2">自主课</span>
+                                        <p>主讲老师：chen tomas</p>
+                                    </div>
+                                    <div class="clr"></div>
+                                </div>
+                                <div class="cou-tll"><a href="#" target="_blank">【直播】勾股定理的应用</a></div>
+                                <div class="cou-price">￥3.00积分<span>原价 : 5.00积分</span></div>
+                                <div class="cou-timer">1课时&nbsp;&nbsp;0分钟&nbsp;&nbsp;2人学习</div>
+                                <div class="cou_bo">直播时间：2020-10-17 18：00</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-2 item">
+                        <div class="card">
+                            <div>
+                                <div class="cou-head">
+                                    <div class="cou-head-img"><a href="#" target="_blank"><img src="images\t01.jpg"
+                                                alt="" /></a></div>
+                                    <div class="cou-head-box">
+                                        <span class="span3">初三数学</span>
+                                        <span class="span2">自主课</span>
+                                        <p>主讲老师：chen tomas</p>
+                                    </div>
+                                    <div class="clr"></div>
+                                </div>
+                                <div class="cou-tll"><a href="#" target="_blank">【直播】勾股定理的应用</a></div>
+                                <div class="cou-price">￥3.00积分<span>原价 : 5.00积分</span></div>
+                                <div class="cou-timer">1课时&nbsp;&nbsp;0分钟&nbsp;&nbsp;2人学习</div>
+                                <div class="cou_bo">直播时间：2020-10-17 18：00</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-3 item">
+                        <div class="card">
+                            <div>
+                                <div class="cou-head">
+                                    <div class="cou-head-img"><a href="#" target="_blank"><img src="images\t01.jpg"
+                                                alt="" /></a></div>
+                                    <div class="cou-head-box">
+                                        <span class="span3">初三数学</span>
+                                        <span class="span2">自主课</span>
+                                        <p>主讲老师：chen tomas</p>
+                                    </div>
+                                    <div class="clr"></div>
+                                </div>
+                                <div class="cou-tll"><a href="#" target="_blank">【直播】勾股定理的应用</a></div>
+                                <div class="cou-price">￥3.00积分<span>原价 : 5.00积分</span></div>
+                                <div class="cou-timer">1课时&nbsp;&nbsp;0分钟&nbsp;&nbsp;2人学习</div>
+                                <div class="cou_bo">直播时间：2020-10-17 18：00</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+            <div class="cat-promote clearf">
+                <a name="English">
+                    <div class="title">英语</div>
+                </a>
+                <div class="content">
+                    <div class="col-2 item">
+                        <div class="card">
+                            <div>
+                                <div class="cou-head">
+                                    <div class="cou-head-img"><a href="#" target="_blank"><img src="images\t01.jpg"
+                                                alt="" /></a></div>
+                                    <div class="cou-head-box">
+                                        <span class="span3">英语口语</span>
+                                        <span class="span2">自主课</span>
+                                        <p>主讲老师：chen tomas</p>
+                                    </div>
+                                    <div class="clr"></div>
+                                </div>
+                                <div class="cou-tll"><a href="#" target="_blank">【直播】如何更好的发音</a></div>
+                                <div class="cou-price">￥3.00积分<span>原价 : 5.00积分</span></div>
+                                <div class="cou-timer">1课时&nbsp;&nbsp;0分钟&nbsp;&nbsp;2人学习</div>
+                                <div class="cou_bo">直播时间：2020-10-17 18：00</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-3 item">
+                        <div class="card">
+                            <div>
+                                <div class="cou-head">
+                                    <div class="cou-head-img"><a href="#" target="_blank"><img src="images\t01.jpg"
+                                                alt="" /></a></div>
+                                    <div class="cou-head-box">
+                                        <span class="span3">英语口语</span>
+                                        <span class="span2">自主课</span>
+                                        <p>主讲老师：chen tomas</p>
+                                    </div>
+                                    <div class="clr"></div>
+                                </div>
+                                <div class="cou-tll"><a href="#" target="_blank">【直播】如何更好的发音</a></div>
+                                <div class="cou-price">￥3.00积分<span>原价 : 5.00积分</span></div>
+                                <div class="cou-timer">1课时&nbsp;&nbsp;0分钟&nbsp;&nbsp;2人学习</div>
+                                <div class="cou_bo">直播时间：2020-10-17 18：00</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-2 item">
+                        <div class="card">
+                            <div>
+                                <div class="cou-head">
+                                    <div class="cou-head-img"><a href="#" target="_blank"><img src="images\t01.jpg"
+                                                alt="" /></a></div>
+                                    <div class="cou-head-box">
+                                        <span class="span3">英语口语</span>
+                                        <span class="span2">自主课</span>
+                                        <p>主讲老师：chen tomas</p>
+                                    </div>
+                                    <div class="clr"></div>
+                                </div>
+                                <div class="cou-tll"><a href="#" target="_blank">【直播】如何更好的发音</a></div>
+                                <div class="cou-price">￥3.00积分<span>原价 : 5.00积分</span></div>
+                                <div class="cou-timer">1课时&nbsp;&nbsp;0分钟&nbsp;&nbsp;2人学习</div>
+                                <div class="cou_bo">直播时间：2020-10-17 18：00</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-3 item">
+                        <div class="card">
+                            <div>
+                                <div class="cou-head">
+                                    <div class="cou-head-img"><a href="#" target="_blank"><img src="images\t01.jpg"
+                                                alt="" /></a></div>
+                                    <div class="cou-head-box">
+                                        <span class="span3">英语口语</span>
+                                        <span class="span2">自主课</span>
+                                        <p>主讲老师：chen tomas</p>
+                                    </div>
+                                    <div class="clr"></div>
+                                </div>
+                                <div class="cou-tll"><a href="#" target="_blank">【直播】如何有更好的发音</a></div>
+                                <div class="cou-price">￥3.00积分<span>原价 : 5.00积分</span></div>
+                                <div class="cou-timer">1课时&nbsp;&nbsp;0分钟&nbsp;&nbsp;2人学习</div>
+                                <div class="cou_bo">直播时间：2020-10-17 18：00</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+            <div class="cat-promote clearf">
+                <a name="politics">
+                    <div class="title">政治</div>
+                </a>
+                <div class="content">
+                    <div class="col-2 item">
+                        <div class="card">
+                            <div>
+                                <div class="cou-head">
+                                    <div class="cou-head-img"><a href="#" target="_blank"><img src="images\t01.jpg"
+                                                alt="" /></a></div>
+                                    <div class="cou-head-box">
+                                        <span class="span3">哲学基础</span>
+                                        <span class="span2">自主课</span>
+                                        <p>主讲老师：chen tomas</p>
+                                    </div>
+                                    <div class="clr"></div>
+                                </div>
+                                <div class="cou-tll"><a href="#" target="_blank">【直播】大哲学家苏格拉底</a></div>
+                                <div class="cou-price">￥3.00积分<span>原价 : 5.00积分</span></div>
+                                <div class="cou-timer">1课时&nbsp;&nbsp;0分钟&nbsp;&nbsp;2人学习</div>
+                                <div class="cou_bo">直播时间：2020-10-17 18：00</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-3 item">
+                        <div class="card">
+                            <div>
+                                <div class="cou-head">
+                                    <div class="cou-head-img"><a href="#" target="_blank"><img src="images\t01.jpg"
+                                                alt="" /></a></div>
+                                    <div class="cou-head-box">
+                                        <span class="span3">哲学基础</span>
+                                        <span class="span2">自主课</span>
+                                        <p>主讲老师：chen tomas</p>
+                                    </div>
+                                    <div class="clr"></div>
+                                </div>
+                                <div class="cou-tll"><a href="#" target="_blank">【直播】大哲学家苏格拉底</a></div>
+                                <div class="cou-price">￥3.00积分<span>原价 : 5.00积分</span></div>
+                                <div class="cou-timer">1课时&nbsp;&nbsp;0分钟&nbsp;&nbsp;2人学习</div>
+                                <div class="cou_bo">直播时间：2020-10-17 18：00</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-2 item">
+                        <div class="card">
+                            <div>
+                                <div class="cou-head">
+                                    <div class="cou-head-img"><a href="#" target="_blank"><img src="images\t01.jpg"
+                                                alt="" /></a></div>
+                                    <div class="cou-head-box">
+                                        <span class="span3">哲学基础</span>
+                                        <span class="span2">自主课</span>
+                                        <p>主讲老师：chen tomas</p>
+                                    </div>
+                                    <div class="clr"></div>
+                                </div>
+                                <div class="cou-tll"><a href="#" target="_blank">【直播】大哲学家苏格拉底</a></div>
+                                <div class="cou-price">￥3.00积分<span>原价 : 5.00积分</span></div>
+                                <div class="cou-timer">1课时&nbsp;&nbsp;0分钟&nbsp;&nbsp;2人学习</div>
+                                <div class="cou_bo">直播时间：2020-10-17 18：00</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-3 item">
+                        <div class="card">
+                            <div>
+                                <div class="cou-head">
+                                    <div class="cou-head-img"><a href="#" target="_blank"><img src="images\t01.jpg"
+                                                alt="" /></a></div>
+                                    <div class="cou-head-box">
+                                        <span class="span3">哲学基础</span>
+                                        <span class="span2">自主课</span>
+                                        <p>主讲老师：chen tomas</p>
+                                    </div>
+                                    <div class="clr"></div>
+                                </div>
+                                <div class="cou-tll"><a href="#" target="_blank">【直播】大哲学家苏格拉底</a></div>
+                                <div class="cou-price">￥3.00积分<span>原价 : 5.00积分</span></div>
+                                <div class="cou-timer">1课时&nbsp;&nbsp;0分钟&nbsp;&nbsp;2人学习</div>
+                                <div class="cou_bo">直播时间：2020-10-17 18：00</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+            <div class="cat-promote clearf">
+                <a name="history">
+                    <div class="title">历史</div>
+                </a>
+                <div class="content">
+                    <div class="col-2 item">
+                        <div class="card">
+                            <div>
+                                <div class="cou-head">
+                                    <div class="cou-head-img"><a href="#" target="_blank"><img src="images\t01.jpg"
+                                                alt="" /></a></div>
+                                    <div class="cou-head-box">
+                                        <span class="span3">中国近代史</span>
+                                        <span class="span2">自主课</span>
+                                        <p>主讲老师：chen tomas</p>
+                                    </div>
+                                    <div class="clr"></div>
+                                </div>
+                                <div class="cou-tll"><a href="#" target="_blank">【直播】鸦片战争</a></div>
+                                <div class="cou-price">￥3.00积分<span>原价 : 5.00积分</span></div>
+                                <div class="cou-timer">1课时&nbsp;&nbsp;0分钟&nbsp;&nbsp;2人学习</div>
+                                <div class="cou_bo">直播时间：2020-10-17 18：00</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-3 item">
+                        <div class="card">
+                            <div>
+                                <div class="cou-head">
+                                    <div class="cou-head-img"><a href="#" target="_blank"><img src="images\t01.jpg"
+                                                alt="" /></a></div>
+                                    <div class="cou-head-box">
+                                        <span class="span3">中国近代史</span>
+                                        <span class="span2">自主课</span>
+                                        <p>主讲老师：chen tomas</p>
+                                    </div>
+                                    <div class="clr"></div>
+                                </div>
+                                <div class="cou-tll"><a href="#" target="_blank">【直播】鸦片战争</a></div>
+                                <div class="cou-price">￥3.00积分<span>原价 : 5.00积分</span></div>
+                                <div class="cou-timer">1课时&nbsp;&nbsp;0分钟&nbsp;&nbsp;2人学习</div>
+                                <div class="cou_bo">直播时间：2020-10-17 18：00</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-2 item">
+                        <div class="card">
+                            <div>
+                                <div class="cou-head">
+                                    <div class="cou-head-img"><a href="#" target="_blank"><img src="images\t01.jpg"
+                                                alt="" /></a></div>
+                                    <div class="cou-head-box">
+                                        <span class="span3">中国近代史</span>
+                                        <span class="span2">自主课</span>
+                                        <p>主讲老师：chen tomas</p>
+                                    </div>
+                                    <div class="clr"></div>
+                                </div>
+                                <div class="cou-tll"><a href="#" target="_blank">【直播】鸦片战争</a></div>
+                                <div class="cou-price">￥3.00积分<span>原价 : 5.00积分</span></div>
+                                <div class="cou-timer">1课时&nbsp;&nbsp;0分钟&nbsp;&nbsp;2人学习</div>
+                                <div class="cou_bo">直播时间：2020-10-17 18：00</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-3 item">
+                        <div class="card">
+                            <div>
+                                <div class="cou-head">
+                                    <div class="cou-head-img"><a href="#" target="_blank"><img src="images\t01.jpg"
+                                                alt="" /></a></div>
+                                    <div class="cou-head-box">
+                                        <span class="span3">中国近代史</span>
+                                        <span class="span2">自主课</span>
+                                        <p>主讲老师：chen tomas</p>
+                                    </div>
+                                    <div class="clr"></div>
+                                </div>
+                                <div class="cou-tll"><a href="#" target="_blank">【直播】鸦片战争</a></div>
+                                <div class="cou-price">￥3.00积分<span>原价 : 5.00积分</span></div>
+                                <div class="cou-timer">1课时&nbsp;&nbsp;0分钟&nbsp;&nbsp;2人学习</div>
+                                <div class="cou_bo">直播时间：2020-10-17 18：00</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+            <div class="cat-promote clearf">
+                <a name="geography">
+                    <div class="title">地理</div>
+                </a>
+                <div class="content">
+                    <div class="col-2 item">
+                        <div class="card">
+                            <div>
+                                <div class="cou-head">
+                                    <div class="cou-head-img"><a href="#" target="_blank"><img src="images\t01.jpg"
+                                                alt="" /></a></div>
+                                    <div class="cou-head-box">
+                                        <span class="span3">亚洲气候类型</span>
+                                        <span class="span2">自主课</span>
+                                        <p>主讲老师：chen tomas</p>
+                                    </div>
+                                    <div class="clr"></div>
+                                </div>
+                                <div class="cou-tll"><a href="#" target="_blank">【直播】季风气候</a></div>
+                                <div class="cou-price">￥3.00积分<span>原价 : 5.00积分</span></div>
+                                <div class="cou-timer">1课时&nbsp;&nbsp;0分钟&nbsp;&nbsp;7人学习</div>
+                                <div class="cou_bo">直播时间：2020-10-17 18：00</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-3 item">
+                        <div class="card">
+                            <div>
+                                <div class="cou-head">
+                                    <div class="cou-head-img"><a href="#" target="_blank"><img src="images\t01.jpg"
+                                                alt="" /></a></div>
+                                    <div class="cou-head-box">
+                                        <span class="span3">亚洲气候类型</span>
+                                        <span class="span2">自主课</span>
+                                        <p>主讲老师：chen tomas</p>
+                                    </div>
+                                    <div class="clr"></div>
+                                </div>
+                                <div class="cou-tll"><a href="#" target="_blank">【直播】季风气候</a></div>
+                                <div class="cou-price">￥3.00积分<span>原价 : 5.00积分</span></div>
+                                <div class="cou-timer">1课时&nbsp;&nbsp;0分钟&nbsp;&nbsp;7人学习</div>
+                                <div class="cou_bo">直播时间：2020-10-17 18：00</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-2 item">
+                        <div class="card">
+                            <div>
+                                <div class="cou-head">
+                                    <div class="cou-head-img"><a href="#" target="_blank"><img src="images\t01.jpg"
+                                                alt="" /></a></div>
+                                    <div class="cou-head-box">
+                                        <span class="span3">亚洲气候类型</span>
+                                        <span class="span2">自主课</span>
+                                        <p>主讲老师：chen tomas</p>
+                                    </div>
+                                    <div class="clr"></div>
+                                </div>
+                                <div class="cou-tll"><a href="#" target="_blank">【直播】季风气候</a></div>
+                                <div class="cou-price">￥3.00积分<span>原价 : 5.00积分</span></div>
+                                <div class="cou-timer">1课时&nbsp;&nbsp;0分钟&nbsp;&nbsp;7人学习</div>
+                                <div class="cou_bo">直播时间：2020-10-17 18：00</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-3 item">
+                        <div class="card">
+                            <div>
+                                <div class="cou-head">
+                                    <div class="cou-head-img"><a href="#" target="_blank"><img src="images\t01.jpg"
+                                                alt="" /></a></div>
+                                    <div class="cou-head-box">
+                                        <span class="span3">亚洲气候类型</span>
+                                        <span class="span2">自主课</span>
+                                        <p>主讲老师：chen tomas</p>
+                                    </div>
+                                    <div class="clr"></div>
+                                </div>
+                                <div class="cou-tll"><a href="#" target="_blank">【直播】季风气候</a></div>
+                                <div class="cou-price">￥3.00积分<span>原价 : 5.00积分</span></div>
+                                <div class="cou-timer">1课时&nbsp;&nbsp;0分钟&nbsp;&nbsp;7人学习</div>
+                                <div class="cou_bo">直播时间：2020-10-17 18：00</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+            <div class="cat-promote clearf">
+                <a name="physics">
+                    <div class="title">物理</div>
+                </a>
+                <div class="content">
+                    <div class="col-2 item">
+                        <div class="card">
+                            <div>
+                                <div class="cou-head">
+                                    <div class="cou-head-img"><a href="#" target="_blank"><img src="images\t01.jpg"
+                                                alt="" /></a></div>
+                                    <div class="cou-head-box">
+                                        <span class="span3">力的类型</span>
+                                        <span class="span2">自主课</span>
+                                        <p>主讲老师：chen tomas</p>
+                                    </div>
+                                    <div class="clr"></div>
+                                </div>
+                                <div class="cou-tll"><a href="#" target="_blank">【直播】摩擦力的作用</a></div>
+                                <div class="cou-price">￥3.00积分<span>原价 : 5.00积分</span></div>
+                                <div class="cou-timer">1课时&nbsp;&nbsp;0分钟&nbsp;&nbsp;7人学习</div>
+                                <div class="cou_bo">直播时间：2020-10-17 18：00</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-3 item">
+                        <div class="card">
+                            <div>
+                                <div class="cou-head">
+                                    <div class="cou-head-img"><a href="#" target="_blank"><img src="images\t01.jpg"
+                                                alt="" /></a></div>
+                                    <div class="cou-head-box">
+                                        <span class="span3">力的类型</span>
+                                        <span class="span2">自主课</span>
+                                        <p>主讲老师：chen tomas</p>
+                                    </div>
+                                    <div class="clr"></div>
+                                </div>
+                                <div class="cou-tll"><a href="#" target="_blank">【直播】摩擦力的作用</a></div>
+                                <div class="cou-price">￥3.00积分<span>原价 : 5.00积分</span></div>
+                                <div class="cou-timer">1课时&nbsp;&nbsp;0分钟&nbsp;&nbsp;7人学习</div>
+                                <div class="cou_bo">直播时间：2020-10-17 18：00</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-2 item">
+                        <div class="card">
+                            <div>
+                                <div class="cou-head">
+                                    <div class="cou-head-img"><a href="#" target="_blank"><img src="images\t01.jpg"
+                                                alt="" /></a></div>
+                                    <div class="cou-head-box">
+                                        <span class="span3">力的类型</span>
+                                        <span class="span2">自主课</span>
+                                        <p>主讲老师：chen tomas</p>
+                                    </div>
+                                    <div class="clr"></div>
+                                </div>
+                                <div class="cou-tll"><a href="#" target="_blank">【直播】摩擦力的作用</a></div>
+                                <div class="cou-price">￥3.00积分<span>原价 : 5.00积分</span></div>
+                                <div class="cou-timer">1课时&nbsp;&nbsp;0分钟&nbsp;&nbsp;7人学习</div>
+                                <div class="cou_bo">直播时间：2020-10-17 18：00</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-3 item">
+                        <div class="card">
+                            <div>
+                                <div class="cou-head">
+                                    <div class="cou-head-img"><a href="#" target="_blank"><img src="images\t01.jpg"
+                                                alt="" /></a></div>
+                                    <div class="cou-head-box">
+                                        <span class="span3">力的类型</span>
+                                        <span class="span2">自主课</span>
+                                        <p>主讲老师：chen tomas</p>
+                                    </div>
+                                    <div class="clr"></div>
+                                </div>
+                                <div class="cou-tll"><a href="#" target="_blank">【直播】摩擦力的作用</a></div>
+                                <div class="cou-price">￥3.00积分<span>原价 : 5.00积分</span></div>
+                                <div class="cou-timer">1课时&nbsp;&nbsp;0分钟&nbsp;&nbsp;7人学习</div>
+                                <div class="cou_bo">直播时间：2020-10-17 18：00</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+            <div class="cat-promote clearf">
+                <a name="chemistry">
+                    <div class="title">化学</div>
+                </a>
+                <div class="content">
+                    <div class="col-2 item">
+                        <div class="card">
+                            <div>
+                                <div class="cou-head">
+                                    <div class="cou-head-img"><a href="#" target="_blank"><img src="images\t01.jpg"
+                                                alt="" /></a></div>
+                                    <div class="cou-head-box">
+                                        <span class="span3">有机物</span>
+                                        <span class="span2">自主课</span>
+                                        <p>主讲老师：chen tomas</p>
+                                    </div>
+                                    <div class="clr"></div>
+                                </div>
+                                <div class="cou-tll"><a href="#" target="_blank">【直播】蛋白质的分解</a></div>
+                                <div class="cou-price">￥3.00积分<span>原价 : 5.00积分</span></div>
+                                <div class="cou-timer">1课时&nbsp;&nbsp;0分钟&nbsp;&nbsp;7人学习</div>
+                                <div class="cou_bo">直播时间：2020-10-17 18：00</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-3 item">
+                        <div class="card">
+                            <div>
+                                <div class="cou-head">
+                                    <div class="cou-head-img"><a href="#" target="_blank"><img src="images\t01.jpg"
+                                                alt="" /></a></div>
+                                    <div class="cou-head-box">
+                                        <span class="span3">有机物</span>
+                                        <span class="span2">自主课</span>
+                                        <p>主讲老师：chen tomas</p>
+                                    </div>
+                                    <div class="clr"></div>
+                                </div>
+                                <div class="cou-tll"><a href="#" target="_blank">【直播】蛋白质的分解</a></div>
+                                <div class="cou-price">￥3.00积分<span>原价 : 5.00积分</span></div>
+                                <div class="cou-timer">1课时&nbsp;&nbsp;0分钟&nbsp;&nbsp;7人学习</div>
+                                <div class="cou_bo">直播时间：2020-10-17 18：00</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-2 item">
+                        <div class="card">
+                            <div>
+                                <div class="cou-head">
+                                    <div class="cou-head-img"><a href="#" target="_blank"><img src="images\t01.jpg"
+                                                alt="" /></a></div>
+                                    <div class="cou-head-box">
+                                        <span class="span3">有机物</span>
+                                        <span class="span2">自主课</span>
+                                        <p>主讲老师：chen tomas</p>
+                                    </div>
+                                    <div class="clr"></div>
+                                </div>
+                                <div class="cou-tll"><a href="#" target="_blank">【直播】蛋白质的分解</a></div>
+                                <div class="cou-price">￥3.00积分<span>原价 : 5.00积分</span></div>
+                                <div class="cou-timer">1课时&nbsp;&nbsp;0分钟&nbsp;&nbsp;7人学习</div>
+                                <div class="cou_bo">直播时间：2020-10-17 18：00</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-3 item">
+                        <div class="card">
+                            <div>
+                                <div class="cou-head">
+                                    <div class="cou-head-img"><a href="#" target="_blank"><img src="images\t01.jpg"
+                                                alt="" /></a></div>
+                                    <div class="cou-head-box">
+                                        <span class="span3">有机物</span>
+                                        <span class="span2">自主课</span>
+                                        <p>主讲老师：chen tomas</p>
+                                    </div>
+                                    <div class="clr"></div>
+                                </div>
+                                <div class="cou-tll"><a href="#" target="_blank">【直播】蛋白质的分解</a></div>
+                                <div class="cou-price">￥3.00积分<span>原价 : 5.00积分</span></div>
+                                <div class="cou-timer">1课时&nbsp;&nbsp;0分钟&nbsp;&nbsp;7人学习</div>
+                                <div class="cou_bo">直播时间：2020-10-17 18：00</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+            <div class="cat-promote clearf">
+                <a name="biology">
+                    <div class="title">生物</div>
+                </a>
+                <div class="content">
+                    <div class="col-2 item">
+                        <div class="card">
+                            <div>
+                                <div class="cou-head">
+                                    <div class="cou-head-img"><a href="#" target="_blank"><img src="images\t01.jpg"
+                                                alt="" /></a></div>
+                                    <div class="cou-head-box">
+                                        <span class="span3">初三生物</span>
+                                        <span class="span2">自主课</span>
+                                        <p>主讲老师：chen tomas</p>
+                                    </div>
+                                    <div class="clr"></div>
+                                </div>
+                                <div class="cou-tll"><a href="#" target="_blank">【直播】线粒体的功能</a></div>
+                                <div class="cou-price">￥3.00积分<span>原价 : 5.00积分</span></div>
+                                <div class="cou-timer">1课时&nbsp;&nbsp;0分钟&nbsp;&nbsp;7人学习</div>
+                                <div class="cou_bo">直播时间：2020-10-17 18：00</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-3 item">
+                        <div class="card">
+                            <div>
+                                <div class="cou-head">
+                                    <div class="cou-head-img"><a href="#" target="_blank"><img src="images\t01.jpg"
+                                                alt="" /></a></div>
+                                    <div class="cou-head-box">
+                                        <span class="span3">初三生物</span>
+                                        <span class="span2">自主课</span>
+                                        <p>主讲老师：chen tomas</p>
+                                    </div>
+                                    <div class="clr"></div>
+                                </div>
+                                <div class="cou-tll"><a href="#" target="_blank">【直播】线粒体的功能</a></div>
+                                <div class="cou-price">￥3.00积分<span>原价 : 5.00积分</span></div>
+                                <div class="cou-timer">1课时&nbsp;&nbsp;0分钟&nbsp;&nbsp;7人学习</div>
+                                <div class="cou_bo">直播时间：2020-10-17 18：00</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-2 item">
+                        <div class="card">
+                            <div>
+                                <div class="cou-head">
+                                    <div class="cou-head-img"><a href="#" target="_blank"><img src="images\t01.jpg"
+                                                alt="" /></a></div>
+                                    <div class="cou-head-box">
+                                        <span class="span3">初三生物</span>
+                                        <span class="span2">自主课</span>
+                                        <p>主讲老师：chen tomas</p>
+                                    </div>
+                                    <div class="clr"></div>
+                                </div>
+                                <div class="cou-tll"><a href="#" target="_blank">【直播】线粒体的功能</a></div>
+                                <div class="cou-price">￥3.00积分<span>原价 : 5.00积分</span></div>
+                                <div class="cou-timer">1课时&nbsp;&nbsp;0分钟&nbsp;&nbsp;7人学习</div>
+                                <div class="cou_bo">直播时间：2020-10-17 18：00</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-3 item">
+                        <div class="card">
+                            <div>
+                                <div class="cou-head">
+                                    <div class="cou-head-img"><a href="#" target="_blank"><img src="images\t01.jpg"
+                                                alt="" /></a></div>
+                                    <div class="cou-head-box">
+                                        <span class="span3">初三生物</span>
+                                        <span class="span2">自主课</span>
+                                        <p>主讲老师：chen tomas</p>
+                                    </div>
+                                    <div class="clr"></div>
+                                </div>
+                                <div class="cou-tll"><a href="#" target="_blank">【直播】线粒体的功能</a></div>
+                                <div class="cou-price">￥3.00积分<span>原价 : 5.00积分</span></div>
+                                <div class="cou-timer">1课时&nbsp;&nbsp;0分钟&nbsp;&nbsp;7人学习</div>
+                                <div class="cou_bo">直播时间：2020-10-17 18：00</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+            <div class="cat-promote clearf">
+                <a name="programme">
+                    <div class="title">编程</div>
+                </a>
+                <div class="content">
+                    <div class="col-2 item">
+                        <div class="card">
+                            <div>
+                                <div class="cou-head">
+                                    <div class="cou-head-img"><a href="#" target="_blank"><img src="images\t01.jpg"
+                                                alt="" /></a></div>
+                                    <div class="cou-head-box">
+                                        <span class="span3">编程基础</span>
+                                        <span class="span2">自主课</span>
+                                        <p>主讲老师：chen tomas</p>
+                                    </div>
+                                    <div class="clr"></div>
+                                </div>
+                                <div class="cou-tll"><a href="#" target="_blank">【直播】c语言入门</a></div>
+                                <div class="cou-price">￥3.00积分<span>原价 : 5.00积分</span></div>
+                                <div class="cou-timer">1课时&nbsp;&nbsp;0分钟&nbsp;&nbsp;7人学习</div>
+                                <div class="cou_bo">直播时间：2020-10-17 18：00</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-3 item">
+                        <div class="card">
+                            <div>
+                                <div class="cou-head">
+                                    <div class="cou-head-img"><a href="#" target="_blank"><img src="images\t01.jpg"
+                                                alt="" /></a></div>
+                                    <div class="cou-head-box">
+                                        <span class="span3">编程基础</span>
+                                        <span class="span2">自主课</span>
+                                        <p>主讲老师：chen tomas</p>
+                                    </div>
+                                    <div class="clr"></div>
+                                </div>
+                                <div class="cou-tll"><a href="#" target="_blank">【直播】c语言入门</a></div>
+                                <div class="cou-price">￥3.00积分<span>原价 : 5.00积分</span></div>
+                                <div class="cou-timer">1课时&nbsp;&nbsp;0分钟&nbsp;&nbsp;7人学习</div>
+                                <div class="cou_bo">直播时间：2020-10-17 18：00</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-2 item">
+                        <div class="card">
+                            <div>
+                                <div class="cou-head">
+                                    <div class="cou-head-img"><a href="#" target="_blank"><img src="images\t01.jpg"
+                                                alt="" /></a></div>
+                                    <div class="cou-head-box">
+                                        <span class="span3">编程基础</span>
+                                        <span class="span2">自主课</span>
+                                        <p>主讲老师：chen tomas</p>
+                                    </div>
+                                    <div class="clr"></div>
+                                </div>
+                                <div class="cou-tll"><a href="#" target="_blank">【直播】c语言入门</a></div>
+                                <div class="cou-price">￥3.00积分<span>原价 : 5.00积分</span></div>
+                                <div class="cou-timer">1课时&nbsp;&nbsp;0分钟&nbsp;&nbsp;7人学习</div>
+                                <div class="cou_bo">直播时间：2020-10-17 18：00</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-3 item">
+                        <div class="card">
+                            <div>
+                                <div class="cou-head">
+                                    <div class="cou-head-img"><a href="#" target="_blank"><img src="images\t01.jpg"
+                                                alt="" /></a></div>
+                                    <div class="cou-head-box">
+                                        <span class="span3">编程基础</span>
+                                        <span class="span2">自主课</span>
+                                        <p>主讲老师：chen tomas</p>
+                                    </div>
+                                    <div class="clr"></div>
+                                </div>
+                                <div class="cou-tll"><a href="#" target="_blank">【直播】c语言入门</a></div>
+                                <div class="cou-price">￥3.00积分<span>原价 : 5.00积分</span></div>
+                                <div class="cou-timer">1课时&nbsp;&nbsp;0分钟&nbsp;&nbsp;7人学习</div>
+                                <div class="cou_bo">直播时间：2020-10-17 18：00</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+        <div class="footer clearf">
+            <div class="container">
+                <a href="#">张智恒</a>
+                <a href="#">宋沂澎</a>
+                <a href="#">区军凯</a>
+                <a href="#">许剑瀚</a>
+                <div>
+                    广东外语外贸大学
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="js/vue.js"></script>
+    <script src="js/index.js"></script>
+    <script src="js/jquery.min.js"></script>
+    <script type="text/javascript">
+        new Vue({
+            el: '#home',
+            data: {
+                ImageItem: [{
+                        url: "images/lunbo1.jpg"
+                    },
+                    {
+                        url: "images/lunbo2.jpg"
+                    },
+                    {
+                        url: "images/lunbo3.jpg"
+                    }
+                ],
+                personnalurl: "",
+                firsturl: "",
+                classliveurl: [],
+                mathliveurl: [],
+
+            },
+            mounted() {
+                let _this = this
+                $.get("./php/test_session.php", function (data) {
+                    _this.personnalurl = 'view\\tc.html?username=' + data
+                })
+                $.get("./php/return_onplayroom.php", function (data) {
+                    var obj = JSON.parse(data)
+                    var array = obj.result;
+                    for (var i = 0; i < array.length; i++) {
+                        var obj2 = eval('(' + array[i] + ')');
+                        _this.firsturl = 'liveroom.html' + '?roomname=' + obj2.roomname;
+                        obj2.url=_this.firsturl;
+                        console.log(obj2.url)
+                        _this.classliveurl.push(obj2)
+                    }
+                })
+
+            },
+
+        })
+    </script>
+
+</body>
+
+</html>

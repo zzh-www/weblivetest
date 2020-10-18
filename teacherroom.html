@@ -1,0 +1,384 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>teacherroom</title>
+  <link rel="stylesheet" href="./css/index.css">
+  <link rel="stylesheet" href="css/mains.css">
+  <link rel="stylesheet" href="css/teachroom.css">
+  <style type="text/css">
+    * {
+      margin: 0;
+      padding: 0;
+    }
+
+    input {
+      box-shadow: inset 1px 1px 5px #aed581;
+      border: 1px solid rgb(231, 231, 231);
+    }
+
+    body {
+      overflow-y: hidden;
+      overflow-x: hidden;
+      background-color: #fff;
+    }
+
+    .top-nav {
+      height: 100px;
+      box-shadow: 5px 10px #33691e;
+    }
+
+    .box {
+      /* margin: 20px auto; */
+      width: 30%;
+      height: 720px;
+      padding: 20px;
+      box-sizing: border-box;
+      border: 1px solid #000;
+      float: left;
+      position: absolute;
+      top: 220px;
+      box-shadow: 10px 10px rgb(151, 149, 149);
+      /* background: rgb(241, 240, 240); */
+      background: rgb(75, 73, 73);
+    }
+
+    #kuai {
+      width: 30%;
+      height: 720px;
+      padding: 5px;
+      margin: 20px 0;
+      border: 1px solid #000;
+      position: relative;
+      left: 600px;
+      top: 20px;
+      box-shadow: 10px 2px rgb(151, 149, 149);
+      background: rgb(75, 73, 73);
+      /* background:rgb(241, 240, 240); */
+    }
+
+    div#chat {
+      width: 100%;
+      height: 60%;
+      padding: 5px;
+      margin: 20px 0;
+      border: 1px solid #bbb;
+      overflow: scroll;
+      color: red;
+      background: #fff;
+    }
+
+    .sign {
+      border: 2px solid #ebffd4;
+      height: 40%;
+      width: 100%;
+      position: absolute;
+      left: 0px;
+      background: #fff;
+    }
+
+    .check {
+      height: 90%;
+      width: 100%;
+      position: absolute;
+      top: 350px;
+      left: 0px;
+    }
+
+    .edit {
+      border: 1px solid #000;
+      height: 82%;
+      width: 35%;
+      position: absolute;
+      top: 220px;
+      left: 1200px;
+      box-shadow: 10px 2px rgb(151, 149, 149);
+      /* background:rgb(241, 240, 240); */
+      background: rgb(75, 73, 73);
+    }
+
+    .edit-title {
+      font-size: 20px;
+      color: #aed581;
+    }
+
+    .btn,
+    .btn2 {
+      border: none;
+      width: 80px;
+      height: 30px;
+      border-radius: 3px;
+      cursor: pointer;
+      background: #aed581;
+      color: #fff;
+    }
+
+    .btn2 {
+      float: right;
+      background: #de5145;
+    }
+
+    .btn2:hover {
+      background: #cd3225;
+    }
+
+    .btn:hover {
+      background: #33691e;
+    }
+
+    .editbtn {
+      border: none;
+      width: 80px;
+      height: 30px;
+      border-radius: 3px;
+      cursor: pointer;
+      background: #aed581;
+      color: #fff;
+    }
+
+    .editbtn:hover {
+      background: #33691e;
+    }
+  </style>
+</head>
+
+<body>
+  <div id="home">
+    <div class="top-nav">
+      <div class="container clearf">
+        <img src="peper.PNG" width=250px height=80px style="position:absolute; left:100px; top:10px;">
+        <div class="fr">
+          <a class="item" href="regist\login.html">登录</a>
+          <a class="item" href="regist\registe.html">注册</a>
+          <a class="item" href="view\tc.html">个人中心</a>
+        </div>
+      </div>
+    </div>
+    <div class="header clearf">
+      <div class="container">
+        <div class="contain">
+          <div class="col-5 search-bar">
+            <label>
+              <input type="text">
+            </label>
+
+            <button>搜索</button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div id="kuai">
+      <h1 style="text-align: center; color: #aed581;">房间信息</h1>
+      <div class="sign">
+        <table cellspacing="30">
+          <tr>
+            <td style="font-size: 20px;">房间名：</td>
+            <td><input class="roominf" v-model="roomname" type="text" disabled /></td>
+          </tr>
+          <tr>
+            <td style="font-size: 20px;">课程类别：</td>
+            <td><input class="classtype" v-model="classname" type="text" disabled /></td>
+          </tr>
+          <tr>
+            <td style="font-size: 20px;">观流地址：</td>
+            <td><input class="catchadress" v-model="playurl" type="text" disabled/></td>
+          </tr>
+          <tr>
+            <td style="font-size: 20px;">观看地址：</td>
+            <td><input class="watchadress" v-model="viewurl" type="text" disabled /></td>
+          </tr>
+        </table>
+      </div>
+      <div class="check">
+        <h1 style="text-align: center; color: #aed581;">考勤信息</h1>
+        <div class="sign">
+          <table>
+            <tr>
+              <td>观众：</td>
+              <td><input class="audience" v-model="nowviewer" type="text" size="9" /></td>
+              <td>学生：</td>
+              <td><input class="students" v-model="total_st" type="text" size="9" /></td>
+              <td>会话：</td>
+              <td><input class="converseation" type="text" size="9" /></td>
+            </tr>
+            <tr>
+              <td>出席学生：</td>
+              <td><input class="attendent"  v-model="present" type="text" size="9" /></td>
+              <td>未出席学生：</td>
+              <td><input class="unattendent" v-model="absent" type="text" size="9" /></td>
+            </tr>
+          </table>
+        </div>
+      </div>
+    </div>
+    <form action="./php/edit_roomtitle.php" method="POST">
+    <div class="edit">
+      
+      <h1 style="color: #aed581;">编辑直播信息</h1>
+      <div>
+        <div class="edit-title">
+          <label for="">标题</label>
+        </div>
+        <input name="title" class="" cols="40" rows="5" placeholder="输入标题" style="font-size: 20px;">
+      </div>
+      <div>
+        <div class="edit-title">
+          <label for="">开始直播通知</label>
+        </div>
+        <input name="info" class="" cols="40" rows="5" placeholder="xxx已上线" style="font-size: 20px;">
+      </div>
+      <!-- <div>
+        <div class="edit-title">
+          <label for="">类别</label>
+        </div>
+        <textarea class="" cols="30" rows="1" placeholder="搜索类别" style="font-size: 20px;"></textarea>
+      </div>
+      <div>
+        <div class="edit-title">
+          <label for="">标记</label>
+        </div>
+        <textarea class="" cols="30" rows="1" placeholder="搜索标记" style="font-size: 20px;"></textarea>
+      </div>
+      <div>
+        <div class="edit-title">
+          <label for="">直播语言</label>
+        </div>
+        <textarea class="" cols="30" rows="1" placeholder="English" style="font-size: 20px;"></textarea>
+      </div> -->
+    
+      <input id="editbtn" class="editbtn" type="submit" value="发送" @click="newtitle"/>
+      
+    </div>
+  </form>
+
+
+    <div class="box">
+      <h1 style="text-align: center; color: #aed581;">聊天室</h1>
+      <!-- <p><span class="name">昵称:</span><input id="txtname" type="text" maxlength="15" />
+        <input id="clear" class="btn2" type="button" value="清屏" /></p> -->
+      <div id="chat"></div>
+      <input id="txtmsg" class="msg" type="text" name="msg" />
+      <input id="btn" class="btn" type="button" value="确定" @click="inputMsg" />
+    </div>
+
+  </div>
+
+
+  <script src="js/vue.js"></script>
+  <script src="js/index.js"></script>
+  <script src="js/jquery.min.js"></script>
+  <script src="js/loader.js"></script>
+  <script>
+    new Vue({
+      el: '#home',
+      data: function () {
+        return {
+          drawer: false,
+          id: 1,
+          string: "",
+          usernamestring: "",
+          viewurl: "http://gwsjwm.top:8080/live/",
+          playurl: "rtmp://gwsjwm.top/live?user=",
+          classname: "",
+          roomname: "",
+          viewers: "",
+          students: "",
+          total_st:"",
+          nowviewer:"",
+          present:"",
+          absent:"",
+
+        }
+      },
+      methods: {
+        getdata() {
+          let _this = this
+          $.get("./php/chat_recv.php", function (data) {
+            $("#chat").html("");
+            var obj = JSON.parse(data)
+            var array = obj.result;
+            for (var i = 0; i < array.length; i++) {
+              var obj2 = eval('(' + array[i] + ')');
+              var time = "<span class = time>" + obj2.whentime + "</span>";
+              $("#chat").append($("<p>" + time + " " + obj2.studentname + ":" + obj2
+                .message + "</p>"))
+            }
+          })
+        },
+        newtitle(){
+          alert("已更新")
+        },
+
+        inputMsg() {
+          let txtmsg = document.querySelector('#txtmsg')
+          // let txtname = document.querySelector('#txtname')
+          if ($("#txtmsg").val() == "") {
+            alert("发送内容不能为空" + $("#txtname").val() + $("#txtmsg").val());
+          } else {
+            /*上传数据*/
+            var url = "./php/chat_send.php";
+            // document.getElementById("txtname").readOnly = true;
+            strmsg = $("#txtmsg").val();
+            console.log(strmsg)
+            $.get(url, {
+              "msg": strmsg
+            }, function (msg) {
+              $("#txtmsg").val("")
+            });
+          }
+
+
+
+
+
+          txtmsg.value = ""
+          // txtname.value= ""
+        },
+        getstnum() {
+          let _this=this
+          $.get("./php/number_ofviewer.php",function(data){
+            console.log(data)
+          var number=data.split('|')
+          _this.total_st=number[0]
+          _this.nowviewer=number[1]
+          _this.present=number[2]
+          _this.absent=number[3]
+            }
+          
+          )
+        },
+
+      },
+      mounted() {
+        let _this = this
+        $.get("./php/get_personal.php",
+          function (data) {
+            var obj = JSON.parse(data);
+            var array = obj.result;
+            var obj2 = eval('(' + array[0] + ')');
+            _this.viewurl = 'https://gwsjwm.top/weblivetest/liveroom.html' + '?roomname=' + obj2.roomname;
+            _this.playurl = _this.playurl + obj2.username + "&pwd=" + obj2.password;
+            _this.classname = obj2.class;
+            _this.roomname = obj2.roomname;
+
+          })
+        setInterval(() => {
+          this.getdata();
+          // console.log("doit")
+        }, 100);
+        setInterval(() => {
+          this.getstnum();
+          // console.log("doit")
+        }, 100);
+
+
+      }
+
+    })
+  </script>
+</body>
+
+</html>
