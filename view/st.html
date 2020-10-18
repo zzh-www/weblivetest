@@ -193,10 +193,12 @@
                         <table width="100%" cellpadding="0" cellspacing="0">
                             <tr>
                                 <td align="right" width="80">姓名:</td>
-                                <td><input type="text" v-model="username" class="name" style="width: 200px; height: 30px;" disabled></td>
+                                <td><input type="text" v-model="username" class="name"
+                                        style="width: 200px; height: 30px;" disabled></td>
                                 <td><a class="item" :href="personnalurl">个人中心</a></td>
                                 <td align="right" width="90">手机号码：</td>
-                                <td width="200"><input type="text" v-model="phonenumber" class="number" style="width: 200px; height: 30px;" disabled>
+                                <td width="200"><input type="text" v-model="phonenumber" class="number"
+                                        style="width: 200px; height: 30px;" disabled>
                                 </td>
 
                                 <td rowspan="9">
@@ -207,13 +209,16 @@
                             </tr>
                             <tr>
                                 <td align="right">性别：</td>
-                                <td><input type="text" v-model="sex" class="gender" style="width: 200px; height: 30px;" disabled></td>
+                                <td><input type="text" v-model="sex" class="gender" style="width: 200px; height: 30px;"
+                                        disabled></td>
                                 <td align="right">邮箱：</td>
-                                <td><input type="text" v-model="email" class="email" style="width: 200px; height: 30px;" disabled></td>
+                                <td><input type="text" v-model="email" class="email" style="width: 200px; height: 30px;"
+                                        disabled></td>
                             </tr>
                             <tr>
                                 <td align="right">关注老师</td>
-                                <td><input type="text" v-model="teachers" class="followteacher" style="width: 200px; height: 30px;" disabled></td>
+                                <td><input type="text" v-model="teachers" class="followteacher"
+                                        style="width: 200px; height: 30px;" disabled></td>
                                 <td align="right">&nbsp</td>
                                 <td>&nbsp;</td>
                             </tr>
@@ -263,8 +268,7 @@
                                 <td colspan="5" height="40">
                                     <div align="center">
                                         <input type="text" v-model="key" v-if="isClick">
-                                        <input type="button" id="button2" value="关注老师" @click='likeTeacher'
-                                            class="input2" />
+                                        <input type="button" id="button2" value="关注老师" @click="likeTeacher" />
                                         <input type="button" value="保存" onclick="save()" class="input2" />
                                     </div>
                                 </td>
@@ -286,25 +290,36 @@
     <script type="text/javascript">
         new Vue({
             el: '#home',
-            data:{
-                username:"",
-                phonenumber:"",
-                email:"",
-                teachers:"",
-                sex:"",
-                hometown:"",
-                personnalurl:"",
-                isClick:false, 
-                key:'',
-                index:0
+            data: {
+                username: "",
+                phonenumber: "",
+                email: "",
+                teachers: "",
+                sex: "",
+                hometown: "",
+                personnalurl: "",
+                isClick: false,
+                key: '',
+                index: 0
 
             },
-            methods:{
-                likeTeacher(){
-                    if(this.index%2==0)
+            methods: {
+                likeTeacher() {
+                    let _this = this; 
+                    if (this.index % 2 == 0) {
                         this.isClick = true
-                    else 
+                    } else {
                         this.isClick = false
+                        let title = document.querySelector('#roomtitle')
+                        /*上传数据*/
+                        var url = "../php/liketeacher.php";
+                        $.get(url, {
+                            "teachertext": _this.key,
+                        }, function (msg) {
+
+                        });
+                        console.log(_this.key)
+                    }
                     this.index++
                 }
 
@@ -318,10 +333,10 @@
                     // console.log(obj2)
                     _this.username = obj2.username;
                     _this.phonenumber = obj2.phonenumber;
-                    _this.sex=obj2.sex;
-                    _this.email=obj2.email;
-                    _this.teachers=obj2.teachers;
-                    _this.hometown=obj2.hometown;
+                    _this.sex = obj2.sex;
+                    _this.email = obj2.email;
+                    _this.teachers = obj2.teachers;
+                    _this.hometown = obj2.hometown;
                     // console.log(_this.teachers)
                 })
             },
